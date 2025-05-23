@@ -1,15 +1,17 @@
 {
-  "name": "installer",
+  "name": "gaston-developer-tool",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "commonjs",
   "main": "electron/main.js",
   "scripts": {
-    "dev": "vite",
+    "vite-only": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "electron:dev": "concurrently \"cross-env BROWSER=none npm run dev\" \"wait-on tcp:5174 && electron .\"",
+    "electron:dev": "cross-env NODE_ENV=development electron .",
+    "dev": "concurrently -k \"vite\" \"node electron/wait-and-start.js\"",
+    "dev-electron": "npm run dev",
     "electron:build": "vite build && electron-builder",
     "electron:preview": "electron ."
   },
@@ -25,6 +27,10 @@
   },
   "dependencies": {
     "@electron/remote": "^2.1.2",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.1.0",
+    "@mui/material": "^7.1.0",
     "concurrently": "^9.1.2",
     "cross-env": "^7.0.3",
     "electron": "^35.0.0",
